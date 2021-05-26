@@ -1,0 +1,13 @@
+version: '3'
+services:
+  botstudio:
+    image: botstudio:latest
+    container_name: botstudio
+    command: yarn start
+    network_mode: host
+    ports:
+      - 3000:3000
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
