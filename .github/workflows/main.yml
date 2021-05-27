@@ -16,7 +16,7 @@ jobs:
       with:
         args: apply bot.yaml
     - name: verify deployment
-      uses: qazz92/kubectl@1.19.6
+      uses: qazz92/kubectl@1.0.3
       env:
         kube_confg_data: ${{ secrets.KUBE_CONFIG_DATA }}
         aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
