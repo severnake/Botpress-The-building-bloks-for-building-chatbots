@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: botpress-prod
+  namespace: chatbot
+  labels:
+    app: botpress-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: botpress-prod
+  template:
+    metadata:
+      labels:
+        app: botpress-prod
+    spec:
+      containers:
+        - image: botpress/server:v12_15_0
+          name: botpress-prod
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 1000Mi
+            requests:
+              cpu: 500m
+              memory: 500Mi
+          env:
+            - name: PORT
+              value: "3000"
+            - name: BP_HOST
+              value: "localhost"
+            - name: BP_PRODUCTION
+              value: "true"
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
