@@ -45,3 +45,7 @@ COPY botpress-master /botpress-master
 
 # set working directory as botpress-master
 WORKDIR /botpress-master
+
+RUN yarn
+
+RUN yarn build
